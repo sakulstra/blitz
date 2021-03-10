@@ -34,12 +34,11 @@ export function withRouter(WrappedComponent: React.ComponentType<WithRouterProps
 
 export function useRouter() {
   const router = useNextRouter()
-  const query = useRouterQuery()
   const params = useParams()
 
   // TODO - we have to explicitly define the return type otherwise TS complains about
   // NextHistoryState and TransitionOptions not being exported from Next.js code
   return React.useMemo(() => {
-    return {...router, query, params}
-  }, [params, query, router]) as BlitzRouter
+    return {...router, params}
+  }, [params, router]) as BlitzRouter
 }
